@@ -133,7 +133,7 @@ class CourseController extends Controller
 // myCourses
     public function show($slug)
     {
-        return Course::where('slug', $slug)->first();
+        $course = Course::where('slug', $slug)->first();
         return response()->json($course, 200);
     }
     public function update(CourseUpdateRequest $request, $id)
