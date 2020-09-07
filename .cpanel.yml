@@ -1,0 +1,5 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/pinnac25/
+    - /bin/cp -R * $DEPLOYPATH
+    
