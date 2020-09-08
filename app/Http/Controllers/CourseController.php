@@ -101,8 +101,7 @@ class CourseController extends Controller
         // return request()->all();
         $validateData = $request->validate([
             'title' => 'required',
-            'isPO' => '',
-            'isCareer' => '',
+            'courseType' => 'required',
             'isFree' => '',
             'price' => '',
             'sub_category_id' => 'required',

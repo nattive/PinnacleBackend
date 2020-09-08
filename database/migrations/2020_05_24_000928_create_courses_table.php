@@ -24,8 +24,10 @@ class CreateCoursesTable extends Migration
             // $table->string('disk')->nullable();
             $table->string('banner_thumbnail')->nullable();
             $table->string('banner')->nullable();
-            $table->string('isPO')->nullable();
-            $table->string('isCareer')->nullable();
+            /**
+            *Could be either isPO or isCareer
+            */
+            $table->string('courseType');
             $table->string('isFree')->default(true);
             $table->integer('no_rated_user')->default('0');
             $table->float('rating_percentage')->default('0');
