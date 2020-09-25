@@ -2,10 +2,9 @@
 
 namespace App;
 
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -17,7 +16,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'account_type'
+        'name', 'email', 'password', 'account_type',
     ];
 
     /**
@@ -49,6 +48,15 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\Review');
     }
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+    public function userQuizResults()
+    {
+        return $this->hasMany('App\UserQuizResult');
+    }
+
     public function getJWTCustomClaims()
     {
         return [];
@@ -63,9 +71,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Course::class);
     }
-     public function userCourseProgresses()
+    public function userCourseProgresses()
     {
-        return $this->belongsToMany(userCourseProgress::class, 'module_id');
+        return $this->hasMany(userCourseProgress::class);
     }
-    
+    public function wishlists()
+    {
+        return $this->hasMany(wishlist::class);
+    }
+
 }

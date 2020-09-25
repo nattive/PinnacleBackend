@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AdditionalTableToUserCourseProgress extends Migration
+class CreateCareerCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AdditionalTableToUserCourseProgress extends Migration
      */
     public function up()
     {
-        Schema::table('user_course_progress', function (Blueprint $table) {
-            $table->unsignedInteger('module_id')->nullable();
+        Schema::create('career_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AdditionalTableToUserCourseProgress extends Migration
      */
     public function down()
     {
-        Schema::table('user_course_progress', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('career_categories');
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Course;
+use App\Http\Requests\CommentRequest;
+use App\Http\Resources\CommentResource;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -12,64 +15,36 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $course = Course::findOrfail($id);
+        return response()->json(CommentResource::collection($course -> Comments()->paginate(8)), 200);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a comment.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        //
+        auth()->user()->Comments() -> create($request->validated());
+        return response()->json('Comment Sent', 200);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the comment.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(CommentRequest $request, Comment $comment)
     {
-        //
+        $comment->update($request->validated());
+        return response()->json('Comment Updated', 200);
+
     }
 
     /**
@@ -80,6 +55,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        return response()->json('Comment Deleted', 200);
+
     }
 }

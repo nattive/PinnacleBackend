@@ -18,14 +18,18 @@ class userCourseProgressResource extends JsonResource
      */
     public function toArray($request)
     {
-        $modules = CourseModule::where('id', $this->module_id)-> first();
-        $Course =  Course::where('id', $modules ->course_id)-> first();
+//         course_id
+// user_id
+// progress
+// module_id
+        $modules =  $this->module_id ? CourseModule::where('id', $this->module_id)-> first() : '';
+        $Course =  $this ->course_id ?  Course::where('id', $this ->course_id)-> first(): '';
         return [
             'course_name' => $Course -> title,
-            'module_name' => $modules -> title,
+            'modules' => $modules,
             'user_id' => $this->user_id,
-            'consumed_materials_array' => json_decode($this->consumed_materials_array),
-            'total_course_material' => count($modules ->CourseMaterials),
+            'consumed_materials_array' =>$this->consumed_materials_array ? json_decode($this->consumed_materials_array) : [],
+            'total_course_material' => $modules ?  count($modules ->CourseMaterials) : 0,
             'finished' => $this-> finished,
         ];
     }

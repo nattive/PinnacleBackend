@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class TutorController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,8 +41,12 @@ class TutorController extends Controller
      */
     public function store(TutorRequest $request)
     {
-      $tutor = Tutor::create($request -> validated());
-       return response()->json( $tutor, 200);
+     $tutor = auth()->user()->Tutor()->create($request -> validated());
+
+       $user = auth()->user();
+       $user -> tutor_id  =  $tutor -> id;
+       $user -> save();
+       return response()->json(['user' =>   $user , 'tutor' => $tutor ], 200);
     }
 
     /**

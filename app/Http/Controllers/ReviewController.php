@@ -114,7 +114,7 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        $request = Review::find($id);
+        $request = Review::findOrFail($id);
         $request -> delete();
         return response('Deleted');
     }

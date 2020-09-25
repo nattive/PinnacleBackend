@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserCourseProgressTable extends Migration
+class CreateWishlistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateUserCourseProgressTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_course_progress', function (Blueprint $table) {
+        Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('user_id');
-            $table->integer('current')->default(0);
-            $table->integer('total_module')->default(0);
-            $table->integer('average_score')->default(0);
-            $table->boolean('finished')->default(false);
-            $table->string('remark')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ class CreateUserCourseProgressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_course_progress');
+        Schema::dropIfExists('wishlists');
     }
 }

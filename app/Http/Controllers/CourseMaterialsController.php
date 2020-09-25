@@ -39,17 +39,7 @@ class CourseMaterialsController extends Controller
     public function store(CourseMaterialRequest $request)
     {
         // return $request->validated();
-        CourseMaterials::create($request->only([
-            'title',
-            'course_module_id',
-            'stepInModule',
-            'text',
-            'quiz',
-            'objective',
-            'prerequisite',
-            'videoPath',
-            'images',
-        ]));
+        CourseMaterials::create($request->validated());
         return response('Module has been uploaded', 200);
     }
 

@@ -16,13 +16,15 @@ class CreateCourseMaterialsTable extends Migration
         Schema::create('course_materials', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('course_module_id')->nullable();
-            $table->integer('stepInModule')->default(0);
+            $table->integer('course_module_id');
+            // $table->integer('stepInModule')->default(0);
             $table->longText('text');
-            $table->longText('quiz')->nullable();
+            // $table->longText('quiz')->nullable();
             $table->longText('objective')->nullable();
             $table->longText('prerequisite')->nullable();
             $table->string('videoPath')->nullable();
+            $table->string('duration')->nullable();
+            // $table->string('public_id')->nullable();
             $table->string('images')->nullable();
             $table->timestamps();
         });

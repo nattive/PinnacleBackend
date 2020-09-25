@@ -33,7 +33,7 @@ class TutorRequest extends FormRequest
             'files' => '',
             'isAdmin' => '',
             'admin_id' => '',
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'facebook' => '',
             'twitter' => '',
             'linkedIn' => '',

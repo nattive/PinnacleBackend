@@ -16,14 +16,19 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('isApproved')->default('false');
+            $table->string('subtitle');
             $table->string('ApprovedBy')->nullable();
             $table->string('courseCode')->nullable();
             $table->string('videoUrl')->nullable();
-            $table->integer('sub_category_id')->unsigned();
-            // $table->string('disk')->nullable();
+            $table->unsignedInteger('sub_category_id')->nullable();
+            $table->integer('career_category_id')->nullable();
             $table->string('banner_thumbnail')->nullable();
             $table->string('banner')->nullable();
+            $table->string('duration')->nullable();
+            $table->string('image_public_id')->nullable();
+            $table->string('video_public_id')->nullable();
+            $table->string('language')->nullable();
+            $table->string('prerequisite')->nullable();
             /**
             *Could be either isPO or isCareer
             */

@@ -24,7 +24,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('tutor', 'Modules.CourseMaterials', 'SubCategory.MainCategory')->get();
+        $courses = Course::with('tutor.user', 'Modules.CourseMaterials', 'SubCategory.MainCategory')->get();
         return CourseResource::collection($courses);
     }
 
@@ -98,14 +98,20 @@ class CourseController extends Controller
 
     public function basicCourseInfo(Request $request)
     {
+
         // return request()->all();
         $validateData = $request->validate([
             'title' => 'required',
+            'subtitle' => 'required',
             'courseType' => 'required',
             'isFree' => '',
+            'prerequisite' => '',
+            'duration' => '',
+            'public_id' => 'requied',
             'price' => '',
-            'sub_category_id' => 'required',
+            'sub_category_id' => 'required_if:courseType,isPO',
             'course_difficulty' => 'required',
+            'career_category_id' => 'required_if:courseType,isCareer',
         ]);
         $code = $this->createCourseCode();
         $additionalData = [
@@ -132,7 +138,7 @@ class CourseController extends Controller
 // myCourses
     public function show($slug)
     {
-        $course = Course::where('slug', $slug)->first();
+        $course = Course::where('slug', $slug)->with('Modules.CourseMaterials','Reviews','users','SubCategory')->first();
         return response()->json($course, 200);
     }
     public function update(CourseUpdateRequest $request, $id)
@@ -182,4 +188,5 @@ class CourseController extends Controller
         $total_rating = $Course->total_rating;
         return response($total_rating);
     }
+
 }

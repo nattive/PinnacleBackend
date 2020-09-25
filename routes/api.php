@@ -27,6 +27,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('admin/courses/index', 'CourseController@index');
     Route::post('tutor/create/{id}', 'TutorController@createTutorAdmin');
 
+    /**
+     * category
+     */
+    Route::post('main_controller/store', 'MainCategoryController@store');
+    Route::post('main_controller/update', 'MainCategoryController@update');
+    Route::post('main_controller/destroy/{id}', 'MainCategoryController@destroy');
+
+    Route::post('/', 'SubCategoryController@store');
+    Route::put('/{id}', 'SubCategoryController@update');
+    Route::delete('/{id}', 'SubCategoryController@destroy');
+
 });
 Route::post('login', 'AuthController@login');
 Route::get('me', 'AuthController@me');
@@ -45,7 +56,7 @@ Route::group(['prefix' => 'tutor', ['middleware' => ['verifyTutor', 'auth:api']]
     Route::get('activities', 'CourseActivityController@tutor');
     Route::group(['prefix' => 'discount'], function () {
         Route::post('/', 'CourseDiscountController@store');
-        Route::GET('/', 'CourseDiscountController@INDEX');
+        Route::GET('/', 'CourseDiscountController@index');
 
     });
     Route::group(['prefix' => 'courses'], function () {
@@ -53,16 +64,16 @@ Route::group(['prefix' => 'tutor', ['middleware' => ['verifyTutor', 'auth:api']]
         Route::put('{id}', 'CourseController@update');
         Route::post('upload-course/basic', 'CourseController@basicCourseInfo');
         Route::delete('delete/{id}', 'CourseController@destroy');
-        Route::get('my/{id}', 'TutorCourseController@myCourses');
+        Route::get('/', 'TutorCourseController@myCourses');
 
         Route::group(['prefix' => 'module'], function () {
             Route::post('/', 'CourseModules@store');
             Route::get('show/{id}', 'CourseModules@show');
             Route::put('/update/{id}', 'CourseModules@update');
-            Route::get('modules/get/{id}', 'CourseModules@index');
+            Route::get('get/{id}', 'CourseModules@index');
         });
 
-        Route::group(['prefix' => 'courses/materials'], function () {
+        Route::group(['prefix' => 'materials'], function () {
             Route::post('/', 'CourseMaterialsController@store');
             Route::get('{slug}', 'TutorCourseController@show');
             Route::get('show/{id}', 'CourseMaterialsController@show');
@@ -70,60 +81,87 @@ Route::group(['prefix' => 'tutor', ['middleware' => ['verifyTutor', 'auth:api']]
         });
 
         Route::group(['prefix' => 'quiz'], function () {
-            Route::POST('add-question', 'CourseQuestionController@store');
-            Route::post('/quiz/store', 'CourseQuestionController@update');
+            Route::POST('/', 'CourseQuestionController@store');
+            Route::put('/', 'CourseQuestionController@update');
         });
     });
 
 });
 
-Route::POST('user/quiz-result/store', 'UserQuizResultController@store');
-Route::get('user/progress-status', 'UserCourseProgressController@index');
+/**
+ *
+ * All End point pretending to the user side
+ *
+ */
+
+Route::group(['prefix' => 'user', ['middleware' => ['auth:api']]], function () {
+    Route::POST('quiz-result/store', 'UserQuizResultController@store');
+
+    Route::group(['prefix' => 'course'], function () {
+        Route::get('progress', 'UserCourseProgressController@index');
+        Route::get('/', 'CourseController@index');
+        Route::get('play/{id}', 'UserCourseController@play');
+        Route::group(['prefix' => 'enroll'], function () {
+            Route::get('/', 'CourseEnrollController@index');
+            Route::POST('/', 'CourseEnrollController@store');
+            Route::post('check', 'UserCourseController@checkIfEnrolled');
+        });
+        Route::group(['prefix' => 'review'], function () {
+            Route::post('/', 'ReviewController@store');
+            Route::get('{id}', 'ReviewController@show');
+            Route::post('/check', 'ReviewController@check');
+            Route::delete('/{id}', 'ReviewController@destroy');
+        });
+        Route::group(['prefix' => 'comment'], function () {
+            Route::post('/', 'CommentController@store');
+            Route::put('{id}', 'CommentController@update');
+            Route::get('{id}', 'CommentController@index');
+            Route::delete('{id}', 'CommentController@destroy');
+        });
+        Route::group(['prefix' => 'reply'], function () {
+            Route::post('/', 'ReplyController@store');
+            Route::delete('{id}', 'ReplyController@destroy');
+        });
+        Route::group(['prefix' => 'wishlist'], function () {
+            Route::get('/', 'WishlistController@index');
+            Route::post('/', 'WishlistController@store');
+            Route::delete('{id}', 'WishlistController@destroy');
+        });
+
+    });
+
+});
 
 /**
  * Main Category api
  */
+Route::group(['prefix' => 'course'], function () {
+    Route::get('category/main', 'MainCategoryController@index');
+    Route::get('category/main/{id}', 'MainCategoryController@show');
+    Route::get('coft/categories', 'CoFCategoryController@index');
 
-Route::get('/courses/main_controller/all', 'MainCategoryController@index');
-Route::get('/courses/main_controller/show/{id}', 'MainCategoryController@show');
-Route::post('/courses/main_controller/store', 'MainCategoryController@store');
-Route::post('/courses/main_controller/update', 'MainCategoryController@update');
-Route::post('/courses/main_controller/destroy/{id}', 'MainCategoryController@destroy');
-
-/**
- * Sub Category api
- */
-
-Route::get('/courses/sub_controller/all', 'SubCategoryController@index');
-Route::get('/courses/sub_controller/show/{id}', 'SubCategoryController@show');
-Route::post('/courses/sub_controller/store', 'SubCategoryController@store');
-Route::post('/courses/sub_controller/update', 'SubCategoryController@update');
-Route::post('/courses/sub_controller/destroy/{id}', 'SubCategoryController@destroy');
+});
 
 // //////////////////////////////////////////////////////////////////////////////////
 
-Route::POST('/courses/play', 'UserCourseController@play');
-
-Route::get('/courses/get_enrolled_course', 'UserCourseController@getEnrolledCourse');
-Route::POST('/courses/enroll', 'UserCourseController@enroll');
-
-Route::post('/courses/check_enrolled', 'UserCourseController@checkIfEnrolled');
-
-Route::post('/courses/review', 'ReviewController@store');
-Route::get('/courses/review/{id}', 'ReviewController@show');
-Route::post('/courses/review/check', 'ReviewController@check');
-Route::delete('/courses/review/{id}', 'ReviewController@destroy');
 /*
  *
  * FREE COURSES END POINT
  *
  */
 
-Route::get('/course/tutor/{id}', 'UserCourseController@fetchByTutor');
+Route::group(['prefix' => 'courses'], function () {
+    Route::get('{slug}', 'UserCourseController@show');
+    Route::get('tutor/{id}', 'UserCourseController@fetchByTutor');
+    Route::group(['prefix' => 'sub_category'], function () {
+        Route::get('/', 'SubCategoryController@index');
+        Route::get('/{id}', 'SubCategoryController@show');
 
-// SHOW COURSE
+    });
+    // SHOW COURSE
+    Route::post('/recommendations', 'UserCourseController@recommendations');
 
-Route::get('/courses/{slug}', 'UserCourseController@show');
+});
 
 // RATE COURSE
 
@@ -154,8 +192,6 @@ Route::get('/courses/get/Career/FREE/{number}', 'UserCourseController@get_free_C
 Route::get('/courses/get/FREE/{number}', 'UserCourseController@getFREE');
 
 // GET RECOMMENDED COURSES BY CATEGORY
-
-Route::get('/courses/recommendations/{category}', 'UserCourseController@getRecommendedCourses');
 
 // GET RECOMMENDED COURSES BY USER
 

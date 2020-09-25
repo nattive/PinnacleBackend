@@ -31,6 +31,7 @@ class CourseModules extends Controller
         try {
             $data = $request->validate([
                 'title' => 'required',
+                // 'title' => 'required|unique:courses',
                 'course_id' => 'required',
             ]);
 

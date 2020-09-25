@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
+use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
@@ -16,13 +16,17 @@ class Course extends Model
 
     protected $fillable = [
         'title',
+        'subtitle',
         'isApproved',
         'ApprovedBy',
         'courseCode',
         'videoUrl',
+        'image_public_id',
+        'video_public_id',
         'sub_category_id',
         'banner',
         'courseType',
+        'career_category_id',
         'isFree',
         'no_rated_user',
         'rating_percentage',
@@ -34,6 +38,9 @@ class Course extends Model
         'slug',
         'course_difficulty',
         'description',
+        'prerequisite',
+        'duration',
+        'public_id',
     ];
 
     public function tutor()
@@ -57,4 +64,13 @@ class Course extends Model
     {
         return $this->belongsTo('App\SubCategory');
     }
+    public function CareerCategory()
+    {
+        return $this->belongsTo('App\CareerCategory');
+    }
+    public function Comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
 }

@@ -20,4 +20,9 @@ class UserQuizResult extends Model
     public function CourseMaterial(){
         return $this->hasOne(CourseMaterials::class, 'module_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+      public function __construct()
+    {
+        $this->middleware('auth:api')->only('me');
+
+    }
     public function register(Request $request)
     {
         // return $request;
@@ -58,9 +63,14 @@ class AuthController extends Controller
 
     public function me()
     {
-        $user = auth('api')->user();
-        $tutor = $user->tutor;
-        return response()->json(compact('user', 'tutor'));
+        $user = auth()->user();
+        if ( auth()->user()->tutor()->exists()) {
+            $tutor = auth()->user()->tutor;
+            # code...
+            // $tutor = $user->tutor ;
+            return response()->json(compact('user', 'tutor'));
+        }
+        return response()->json(compact('user'));
 
     }
 

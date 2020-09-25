@@ -4,25 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class wishlist extends Model
 {
     protected $fillable = [
         'course_id',
-        'body',
-     ];
+        'user_id',
+    ];
 
-    public function course()
+    public function courses()
     {
-        return $this->belongsTo('App\Course', 'course_id');
+        return $this->belongsToMany(Course::class);
     }
-
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
-    }
- public function replies()
-    {
-        return $this->hasMany('App\Reply');
     }
 
 }

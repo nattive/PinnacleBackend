@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseMaterials extends Model
 {
-    
+
 
     protected $fillable = [
         'title',
@@ -16,6 +16,8 @@ class CourseMaterials extends Model
         'quiz',
         'objective',
         'prerequisite',
+        'duration',
+        'public_id',
         'videoPath',
         'images',
     ];

@@ -26,11 +26,15 @@ class CourseMaterialRequest extends FormRequest
         return [
             'title' => 'required',
             'course_module_id' => 'required',
-            'text' => 'required',
-            'objective' => '',
-            'prerequisite' => '',
-            'videoPath' => '',
-            'images' => '',
+            'stepInModule' => 'nullable',
+            'text' => '',
+            'quiz' => 'nullable',
+            'objective' => 'nullable',
+            'prerequisite' => 'nullable',
+            'videoPath' => 'nullable',
+            'images' => 'nullable',
+            'duration' => 'nullable',
+            'public_id' => 'nullable',
         ];
     }
 }
