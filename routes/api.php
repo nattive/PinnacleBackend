@@ -95,9 +95,13 @@ Route::group(['prefix' => 'tutor', ['middleware' => ['verifyTutor', 'auth:api']]
  */
 
 Route::group(['prefix' => 'user', ['middleware' => ['auth:api']]], function () {
-    Route::POST('quiz-result/store', 'UserQuizResultController@store');
 
     Route::group(['prefix' => 'course'], function () {
+        Route::group(['prefix' => 'quiz'], function () {
+            Route::POST('/', 'UserQuizResultController@store');
+
+        });
+
         Route::get('progress', 'UserCourseProgressController@index');
         Route::get('/', 'CourseController@index');
         Route::get('play/{id}', 'UserCourseController@play');

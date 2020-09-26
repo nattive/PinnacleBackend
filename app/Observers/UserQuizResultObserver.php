@@ -17,7 +17,7 @@ class UserQuizResultObserver
     public function created(UserQuizResult $userQuizResult)
     {
         $CourseMaterials = CourseMaterials::where('id', $userQuizResult->module_id)->with('Module')->first();
-        $userCourseProgress = auth()->user()->userCourseProgress()->where('course_id', $userQuizResult->module_id)->first();
+        $userCourseProgress = auth()->user()->userCourseProgresses()->where('course_id', $userQuizResult->module_id)->first();
         $userCourseProgress->update([
             'current' => $userQuizResult->module_id,
             'finished' => $userCourseProgress->total_module == count($CourseMaterials) ? true : false,

@@ -23,6 +23,19 @@ class CourseResource extends JsonResource
              $materials += count($module->CourseMaterials);
           }
         }
+        $courseType = '';
+        switch ($this -> courseType) {
+            case 'isPO':
+               $courseType = 'Pinnacle Ulearn';
+                break;
+             case 'isCareer':
+               $courseType = 'Pinnacle Career of the future';
+                break;
+
+            default:
+                # code...
+                break;
+        }
         return [
             'title' => $this-> title,
             'id' => $this-> id,
@@ -33,7 +46,7 @@ class CourseResource extends JsonResource
             'video_public_id' =>  $this->video_public_id,
             'sub_category_id' =>  $this->sub_category_id,
             'banner' =>  $this->banner,
-            'courseType' =>  $this->courseType,
+            'courseType' =>   $courseType,
             // 'career_category_id' =>  $this->career_category_id,
             'isFree' =>  $this->isFree,
             'no_rated_user' =>  $this->no_rated_user,
