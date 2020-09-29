@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "rajurayhan/larastreamer": "^1.0",
+        "spatie/laravel-searchable": "^1.7",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

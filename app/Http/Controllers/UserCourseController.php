@@ -11,7 +11,7 @@ class UserCourseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->only('getEnrolledCourse');
+        $this->middleware('auth:api')->only(['getEnrolledCourse', 'play']);
     }
     /**
      *
@@ -29,11 +29,6 @@ class UserCourseController extends Controller
         return new CourseResource($course);
     }
 
-    public function enroll(Request $request)
-    {
-
-    }
-
     public function recommendations(Request $request)
     {
         if ($request->slugArray) {
@@ -42,15 +37,24 @@ class UserCourseController extends Controller
                 $course = Course::where('slug', $request->slugArray[0])->first();
                 $RecommendedCourses = Course::where([['sub_category_id', $course->sub_category_id],
                     ['career_category_id', $request->career_category_id]])->get();
-                    $data = [
-                        'Title' =>  $course -> title,
-                        'Course' => CourseResource::collection( $RecommendedCourses)
-                    ];
+                $data = [
+                    'Title' => $course->title,
+                    'Course' => CourseResource::collection($RecommendedCourses),
+                ];
                 return response()->json($data, 200);
             }
             $randomInt = rand(0, $max);
+            $course = Course::where('slug', $request->slugArray[$randomInt])->first();
+            $RecommendedCourses = Course::where([['sub_category_id', $course->sub_category_id],
+                ['career_category_id', $request->career_category_id]])->get();
+            $data = [
+                'Title' => $course->title,
+                'Course' => CourseResource::collection($RecommendedCourses),
+            ];
+            return response()->json($data, 200);
+
         }
-        return 'no max';
+        return $request->slugArray;
     }
     public function play($slug)
     {

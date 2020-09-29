@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tutor extends Model
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
+
+class Tutor extends Model  implements Searchable
 {
     protected $fillable = [
         'isCotF_tutor',
@@ -23,6 +26,14 @@ class Tutor extends Model
         'linkedIn',
         'youTube',
     ];
+    public function getSearchResult(): SearchResult
+    {
+
+        return new SearchResult(
+            $this,
+            $this->name
+        );
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -14,7 +14,7 @@ class CourseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except(['index', 'show']);
 
     }
     /**
@@ -24,7 +24,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('tutor.user', 'Modules.CourseMaterials', 'SubCategory.MainCategory')->get();
+        $courses = Course::where('videoUrl', '!=', null)->with('tutor.user', 'Modules.CourseMaterials', 'SubCategory.MainCategory')->get();
         return CourseResource::collection($courses);
     }
 

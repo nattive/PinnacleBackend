@@ -99,9 +99,9 @@ Route::group(['prefix' => 'user', ['middleware' => ['auth:api']]], function () {
     Route::group(['prefix' => 'course'], function () {
         Route::group(['prefix' => 'quiz'], function () {
             Route::POST('/', 'UserQuizResultController@store');
+            Route::get('userHasTakenQuiz/{id}', 'UserQuizResultController@userHasTakenQuiz');
 
         });
-
         Route::get('progress', 'UserCourseProgressController@index');
         Route::get('/', 'CourseController@index');
         Route::get('play/{id}', 'UserCourseController@play');
@@ -140,7 +140,9 @@ Route::group(['prefix' => 'user', ['middleware' => ['auth:api']]], function () {
  * Main Category api
  */
 Route::group(['prefix' => 'course'], function () {
+    Route::get('search/{query}', 'SearchController@search');
     Route::get('category/main', 'MainCategoryController@index');
+    Route::get('category/sub', 'SubCategoryController@index');
     Route::get('category/main/{id}', 'MainCategoryController@show');
     Route::get('coft/categories', 'CoFCategoryController@index');
 
@@ -155,6 +157,8 @@ Route::group(['prefix' => 'course'], function () {
  */
 
 Route::group(['prefix' => 'courses'], function () {
+    Route::get('/', 'CourseController@index');
+
     Route::get('{slug}', 'UserCourseController@show');
     Route::get('tutor/{id}', 'UserCourseController@fetchByTutor');
     Route::group(['prefix' => 'sub_category'], function () {

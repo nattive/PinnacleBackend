@@ -170,6 +170,7 @@ class ComposerStaticIniteda337156ef31291798a8e7e307bda8c
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
+            'Spatie\\Searchable\\' => 18,
         ),
         'R' => 
         array (
@@ -430,6 +431,10 @@ class ComposerStaticIniteda337156ef31291798a8e7e307bda8c
         'Symfony\\Bridge\\PsrHttpMessage\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
+        ),
+        'Spatie\\Searchable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-searchable/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -774,6 +779,7 @@ class ComposerStaticIniteda337156ef31291798a8e7e307bda8c
         'App\\Http\\Controllers\\UserQuestionsScoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserQuestionsScoreController.php',
         'App\\Http\\Controllers\\UserQuizResultController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserQuizResultController.php',
         'App\\Http\\Controllers\\VideoController' => __DIR__ . '/../..' . '/app/Http/Controllers/VideoController.php',
+        'App\\Http\\Controllers\\WishlistController' => __DIR__ . '/../..' . '/app/Http/Controllers/WishlistController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -5956,6 +5962,15 @@ class ComposerStaticIniteda337156ef31291798a8e7e307bda8c
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\Searchable\\Exceptions\\InvalidModelSearchAspect' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/Exceptions/InvalidModelSearchAspect.php',
+        'Spatie\\Searchable\\Exceptions\\InvalidSearchableModel' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/Exceptions/InvalidSearchableModel.php',
+        'Spatie\\Searchable\\ModelSearchAspect' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/ModelSearchAspect.php',
+        'Spatie\\Searchable\\Search' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/Search.php',
+        'Spatie\\Searchable\\SearchAspect' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/SearchAspect.php',
+        'Spatie\\Searchable\\SearchResult' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/SearchResult.php',
+        'Spatie\\Searchable\\SearchResultCollection' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/SearchResultCollection.php',
+        'Spatie\\Searchable\\Searchable' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/Searchable.php',
+        'Spatie\\Searchable\\SearchableAttribute' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/SearchableAttribute.php',
         'Squiz_Sniffs_Arrays_ArrayBracketSpacingSniff' => __DIR__ . '/..' . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs/Arrays/ArrayBracketSpacingSniff.php',
         'Squiz_Sniffs_Arrays_ArrayDeclarationSniff' => __DIR__ . '/..' . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs/Arrays/ArrayDeclarationSniff.php',
         'Squiz_Sniffs_CSS_ClassDefinitionClosingBraceSpaceSniff' => __DIR__ . '/..' . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs/CSS/ClassDefinitionClosingBraceSpaceSniff.php',

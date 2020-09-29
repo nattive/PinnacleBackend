@@ -4,8 +4,10 @@ namespace App;
 
 use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Course extends Model
+class Course extends Model  implements Searchable
 {
     use MediaAlly;
 
@@ -13,6 +15,17 @@ class Course extends Model
         'converted_for_downloading_at',
         'converted_for_streaming_at',
     ];
+
+     public function getSearchResult(): SearchResult
+     {
+
+         return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->title,
+            $this->subTitle,
+              ['type' => 'course']
+         );
+     }
 
     protected $fillable = [
         'title',

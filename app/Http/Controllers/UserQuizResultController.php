@@ -14,8 +14,8 @@ class UserQuizResultController extends Controller
     }
     public function store(Request $request)
     {
-        $userQuizResult = UserQuizResult::where([['module_id', $request->module_id], ['user_id', auth('api')->user()->id]])->first();
-        if ($userQuizResult) {
+        // $userQuizResult = UserQuizResult::where([['module_id', $request->module_id], ['user_id', auth('api')->user()->id]])->first();
+        if ($this->userHasTakenQuiz( $request->module_id)) {
             return response()->json('You have taken this Quiz', 300);
         }
         $validate = $request->validate([
@@ -29,5 +29,14 @@ class UserQuizResultController extends Controller
         $array = ['user_course_progress' => 0];
         auth('api')->user()->userQuizResults()->create(array_merge($array, $validate));
         return response()->json('Course Progress Updated', 200);
+    }
+    public function userHasTakenQuiz($moduleId)
+    {
+        $userQuizResult = auth()->user()->userQuizResults()->where([['module_id', $moduleId],
+            ['user_id', auth('api')->user()->id]])->first();
+        if ($userQuizResult) {
+            return   $userQuizResult;
+        }
+        return 'false';
     }
 }
