@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-      public function __construct()
+    public function __construct()
     {
         $this->middleware('auth:api')->only('me');
 
@@ -50,10 +50,11 @@ class AuthController extends Controller
 
     protected function respondWithToken($token)
     {
-        $user =  auth('api')->user();
+        $user = auth('api')->user();
         return response()->json([
             'user' => $user,
-            'tutor' =>$user->tutor,
+            'tutor' => $user->tutor,
+            'mentee' => $user->mentee,
             'courses' => auth('api')->user()->courses ?? '',
             'access_token' => $token,
             'token_type' => 'bearer',
@@ -63,14 +64,17 @@ class AuthController extends Controller
 
     public function me()
     {
+        $mentee = '';
         $user = auth()->user();
-        if ( auth()->user()->tutor()->exists()) {
+        $mentee = auth()->user()->mentee;
+        if (auth()->user()->tutor()->exists()) {
             $tutor = auth()->user()->tutor;
             # code...
             // $tutor = $user->tutor ;
-            return response()->json(compact('user', 'tutor'));
+            return response()->json(compact('user', 'tutor', 'mentee'));
         }
-        return response()->json(compact('user'));
+
+        return response()->json(compact('user', 'mentee'));
 
     }
 

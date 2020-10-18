@@ -11,10 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    @include('layouts\link')
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    @include('layouts\link')
 </head>
 
 <body>

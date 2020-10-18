@@ -40,6 +40,15 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(Tutor::class);
     }
+    public function volunteer()
+    {
+        return $this->hasOne(Volunteer::class);
+    }
+    public function mentee()
+    {
+        return $this->hasOne(Mentee::class);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -48,6 +57,21 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\Review');
     }
+    public function userNotifications()
+    {
+        return $this->hasMany(userNotification::class);
+    }
+
+    public function userMessages()
+    {
+        return $this->hasMany(userMessage::class);
+    }
+
+    public function courseCart()
+    {
+        return $this->hasOne(CourseCart::class);
+    }
+
     public function comments()
     {
         return $this->hasMany('App\Comment');

@@ -12,6 +12,7 @@
                 <th>Modules</th>
                 <th>Approval Status</th>
                 <th>Fee</th>
+                <th>Rating Percentage</th>
                 <th>Update Approval Status</th>
               </tr>
             </thead>
@@ -19,13 +20,14 @@
               <loading :active.sync="loading" :is-full-page="!fullPage"></loading>
               <tr v-for="(course, index) in courses" :key="index">
                 <td>{{ new Date( course.created_at)}}</td>
-                <td>100398</td>
+                <td>{{ course.courseCode}}</td>
                 <td>{{ course.title}}</td>
                 <td class="text-right">{{course.modules.length}}</td>
                 <td
                   class="text-right"
                 >{{course.isApproved === 'true' ? 'Approved' : 'Not Approved'}}</td>
                 <td class="text-right">{{ course.price || 'Free'}}</td>
+                <td class="text-right">{{ course.rating_percentage }}%</td>
                 <select
                   name
                   id
@@ -33,6 +35,7 @@
                   v-model="isApproved"
                   @change="approveCourse(course.id)"
                 >
+                  <option disabled class="p-2">{{`It is currently ${course.ApprovedBy ? 'Approved' : 'Unapproved'}`}}</option>
                   <option value="true" class="p-2">Approve</option>
                   <option value="false" class="p-2">Disapprove</option>
                 </select>
@@ -85,9 +88,9 @@ export default {
     },
     fetchCourses() {
       this.loading = true;
-      Axios.get("admin/courses/index")
+      Axios.get("admin/course")
         .then(res => {
-          this.courses = res.data.data;
+          this.courses = res.data;
           console.log(res);
           this.loading = false;
         })

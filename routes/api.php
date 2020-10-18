@@ -38,6 +38,27 @@ Route::group(['prefix' => 'admin'], function () {
     Route::put('/{id}', 'SubCategoryController@update');
     Route::delete('/{id}', 'SubCategoryController@destroy');
 
+    Route::group(['prefix' => 'testimonial'], function () {
+        Route::get('/', 'TestimonialController@index');
+        Route::post('/', 'TestimonialController@store');
+        Route::delete('{id}', 'TestimonialController@destroy');
+    });
+
+    Route::group(['prefix' => 'blog'], function () {
+        Route::post('/', 'BlogPostController@store');
+        Route::group(['prefix' => 'category'], function () {
+            Route::get('/', 'BlogCategoryController@index');
+            Route::get('{category}', 'BlogCategoryController@show');
+            Route::post('/', 'BlogCategoryController@store');
+        });
+
+    });
+
+    Route::group(['prefix' => 'course'], function () {
+        Route::get('/', 'AdminCourseController@courses');
+
+    });
+
 });
 Route::post('login', 'AuthController@login');
 Route::get('me', 'AuthController@me');
@@ -95,13 +116,25 @@ Route::group(['prefix' => 'tutor', ['middleware' => ['verifyTutor', 'auth:api']]
  */
 
 Route::group(['prefix' => 'user', ['middleware' => ['auth:api']]], function () {
+    Route::group(['prefix' => 'message'], function () {
+        Route::post('send', 'UserMessageController@send');
+
+    });
+    Route::group(['prefix' => 'notification'], function () {
+        Route::get('/', 'userNotificationController@index');
+        Route::get('/read/{id}', 'userNotificationController@read');
+
+    });
+    Route::group(['prefix' => 'Coachee'], function () {
+        Route::post('/', 'MenteeController@store');
+    });
 
     Route::group(['prefix' => 'course'], function () {
         Route::group(['prefix' => 'quiz'], function () {
             Route::POST('/', 'UserQuizResultController@store');
             Route::get('userHasTakenQuiz/{id}', 'UserQuizResultController@userHasTakenQuiz');
-
         });
+        Route::get('top-rated', 'UserCourseController@topRated');
         Route::get('progress', 'UserCourseProgressController@index');
         Route::get('/', 'CourseController@index');
         Route::get('play/{id}', 'UserCourseController@play');
@@ -134,83 +167,86 @@ Route::group(['prefix' => 'user', ['middleware' => ['auth:api']]], function () {
 
     });
 
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/', 'CourseCartController@index');
+        Route::get('/{id}', 'CourseCartController@store');
+    });
+});
+
+Route::group(['prefix' => 'volunteer'], function () {
+    Route::get('/', 'TestimonialController@index');
+});
+Route::group(['prefix' => 'testimonial'], function () {
+    Route::get('{location}', 'TestimonialController@show');
+});
+
+Route::group(['prefix' => 'post'], function () {
+    Route::get('search/{query}', 'SearchController@searchBlog');
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('/', 'BlogPostController@category');
+    });
+    Route::get('/', 'BlogPostController@index');
+    Route::get('{slug}', 'BlogPostController@show');
 });
 
 /**
  * Main Category api
  */
 Route::group(['prefix' => 'course'], function () {
+    Route::get('recommendations/user/{userId}', 'UserCourseController@getRecommendedCoursesByUser');
+    Route::get('get/PO/paid/{number}', 'PaidCourseController@get_paid_PO_courses');
+    Route::get('/', 'CourseController@index');
     Route::get('search/{query}', 'SearchController@search');
     Route::get('category/main', 'MainCategoryController@index');
     Route::get('category/sub', 'SubCategoryController@index');
     Route::get('category/main/{id}', 'MainCategoryController@show');
     Route::get('coft/categories', 'CoFCategoryController@index');
-
-});
-
-// //////////////////////////////////////////////////////////////////////////////////
-
-/*
- *
- * FREE COURSES END POINT
- *
- */
-
-Route::group(['prefix' => 'courses'], function () {
-    Route::get('/', 'CourseController@index');
-
     Route::get('{slug}', 'UserCourseController@show');
     Route::get('tutor/{id}', 'UserCourseController@fetchByTutor');
     Route::group(['prefix' => 'sub_category'], function () {
         Route::get('/', 'SubCategoryController@index');
         Route::get('/{id}', 'SubCategoryController@show');
-
     });
-    // SHOW COURSE
-    Route::post('/recommendations', 'UserCourseController@recommendations');
+    Route::post('recommendations', 'UserCourseController@recommendations');
+    Route::post('rate', 'CourseController@Rating');
 
 });
 
 // RATE COURSE
 
-Route::post('/courses/rate', 'CourseController@Rating');
-
 // FETCH COURSE
 
-Route::get('/courses/get/{number}', 'UserCourseController@get');
+// Route::get('/courses/get/{number}', 'UserCourseController@get');
 
-// FETCH PINNACLE ONLINE COURSE
+// // FETCH PINNACLE ONLINE COURSE
 
-Route::get('/courses/get/PO/{number}', 'UserCourseController@getPO');
+// Route::get('/courses/get/PO/{number}', 'UserCourseController@getPO');
 
-// FETCH ALL CAREER OF THE FUTURE COURSES
+// // FETCH ALL CAREER OF THE FUTURE COURSES
 
-Route::get('/courses/get/COTF/{number}', 'UserCourseController@getCOTF');
+// Route::get('/courses/get/COTF/{number}', 'UserCourseController@getCOTF');
 
-// FETCH PINNACLE ONLINE FREE COURSE
+// // FETCH PINNACLE ONLINE FREE COURSE
 
-Route::get('/courses/get/PO/FREE/{number}', 'UserCourseController@get_free_PO_courses');
+// Route::get('/courses/get/PO/FREE/{number}', 'UserCourseController@get_free_PO_courses');
 
-// FETCH  FREE CAREER FOR THE FUTURE FREE COURSE
+// // FETCH  FREE CAREER FOR THE FUTURE FREE COURSE
 
-Route::get('/courses/get/Career/FREE/{number}', 'UserCourseController@get_free_Career_courses');
+// Route::get('/courses/get/Career/FREE/{number}', 'UserCourseController@get_free_Career_courses');
 
-// FETCH FREE COURSES
+// // FETCH FREE COURSES
 
-Route::get('/courses/get/FREE/{number}', 'UserCourseController@getFREE');
+// Route::get('/courses/get/FREE/{number}', 'UserCourseController@getFREE');
 
 // GET RECOMMENDED COURSES BY CATEGORY
 
 // GET RECOMMENDED COURSES BY USER
-
-Route::get('/courses/recommendations/user/{userId}', 'UserCourseController@getRecommendedCoursesByUser');
 
 /****
  *
  * PAID COURSES END POINT
  *
  */
-Route::get('/courses/get/PO/paid/{number}', 'PaidCourseController@get_paid_PO_courses');
 
 // Admin
 Route::get('/auth/admin', 'AdminController@getAdmin');

@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
     // Route::view('/admin', 'admin');
 Route::get('/', 'HomeController@index');
 Route::get('/courses', 'HomeController@courses')->name('courses');
+Route::get('/blog', 'HomeController@blog')->name('blog');
+Route::get('/testimonial', 'HomeController@testimonial')->name('testimonial');
 Route::get('/courses/edit/{id}', 'HomeController@updateCourse')->name('updateCourse');
 Route::get('/courseModuleList/{id}', 'HomeController@courseModuleList')->name('courseModuleList');
 Route::get('/courses/add-question/{courseMaterialId}', 'HomeController@AddQuestion')->name('AddQuestion');

@@ -86,6 +86,18 @@ class UserCourseController extends Controller
         return response('unknown user', 404);
     }
 
+
+    /**
+     *  Get courses related to user's account
+     * @return Response
+     *
+     **/
+public function topRated()
+{
+    $user = auth()->user;
+    $courses = Course::where('courseType', $user -> account_type)->get();
+    return response()->json(CourseResource::collection( $courses), 200);
+}
     public function getEnrolledCourse()
     {
         // return $request-> all();

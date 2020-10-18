@@ -8,7 +8,7 @@ class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *unsignedInteger
      * @return void
      */
     public function up()

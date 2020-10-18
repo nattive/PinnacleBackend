@@ -15,7 +15,7 @@
 <script src="{{ asset('vendor/circle-progress/circle-progress.min.js') }}"></script>
 <script src="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js') }}"></script>
-<script src="{{ asset('') }}vendor/select2/select2.min.js">
+<script src="{{ asset('vendor/select2/select2.min.j') }}s">
 </script>
 
 <!-- Main JS-->

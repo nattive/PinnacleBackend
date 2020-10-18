@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\BlogPost;
+use App\Http\Resources\BlogPostResource;
 use Spatie\Searchable\Search;
 
 class SearchController extends Controller
@@ -17,4 +18,13 @@ class SearchController extends Controller
 
         return $searchResults;
     }
+
+    public function searchBlog($searchTerm)
+    {
+
+        $blogPosts = BlogPost::query()->where('title', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('tags', 'LIKE', "%{$searchTerm}%")->get();
+        return BlogPostResource::collection($blogPosts);
+    }
+
 }

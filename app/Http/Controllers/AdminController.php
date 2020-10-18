@@ -12,7 +12,7 @@ class AdminController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    
+
     public function getAdmin()
     {
         dd(Auth::user());
@@ -23,4 +23,5 @@ class AdminController extends Controller
             return 'unauthorized';
         }
     }
+
 }

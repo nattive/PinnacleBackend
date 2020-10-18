@@ -20,7 +20,7 @@
         </div>
         <nav class="navbar-mobile">
             <div class="container-fluid">
-                {{-- <ul class="navbar-mobile__list list-unstyled">
+                <ul class="navbar-mobile__list list-unstyled">
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -113,7 +113,7 @@
                             </li>
                         </ul>
                     </li>
-                </ul> --}}
+                </ul>
             </div>
         </nav>
     </header>
@@ -133,17 +133,22 @@
                         <a class="js-arrow" href="/">
                             <i class="fas fa-tachometer-alt"></i>Update Website</a>
                     </li>
-                    @isset(Auth::user()-> tutor_id)
+                    {{-- @isset(Auth::user()-> tutor_id)
                     <li>
                         <a href="{{ route('courses') }}">
                             <i class="fas fa-book"></i>Your Courses</a>
 
                     </li>
-                    @endisset
+                    @endisset --}}
                     <li>
                         <a href="table.html">
                             <i class="fas fa-table"></i>Manage Tutors</a>
                     </li>
+                    <li>
+                       <a href='{{ route('testimonial') }}'>
+                            <i class="fas fa-table"></i>Upload Testimonials</a>
+                    </li>
+
                     <li>
                         <a href='{{ route('category') }}'>
                             <i class="far fa-check-square"></i>Category</a>
@@ -152,7 +157,11 @@
                         <a href="{{ route('AllCourses') }}">
                             <i class="fas fa-calendar-alt"></i>All Courses</a>
                     </li>
-                    
+                     <li>
+                        <a href="{{ route('blog') }}">
+                            <i class="fas fa-book"></i>Blog Post</a>
+                    </li>
+
                 </ul>
             </nav>
         </div>

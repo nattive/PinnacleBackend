@@ -38,6 +38,15 @@ class HomeController extends Controller
     {
         return view('Pages.addCourse');
     }
+     public function blog()
+    {
+        return view('Pages.blog');
+    }
+ public function testimonial()
+    {
+        return view('Pages.testimonial');
+    }
+
     public function category()
     {
         return view('Pages.Category');
@@ -63,7 +72,7 @@ class HomeController extends Controller
         $course = Course::where('id', $id)->first();
         return view('Pages.modules', compact('course'));
     }
-    
+
     public function updateCourse($course)
     {
         $course = Course::find($course);

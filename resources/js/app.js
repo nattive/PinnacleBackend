@@ -25,7 +25,8 @@ Vue.use(VueSweetalert2);
 Vue.use(VueAxios, axios)
 Vue.use(wysiwyg);
 
-axios.defaults.baseURL = `http://admin.pinnacleonline.org/api`
+// axios.defaults.baseURL = `http://admin.pinnacleonline.org/api`
+axios.defaults.baseURL = `http://pinnacle.test`
 
 /**
  * The following block of code may be used to automatically register your
@@ -50,6 +51,8 @@ Vue.component('add-module', require('./components/AddModuleCard.vue').default);
 Vue.component('add-question', require('./components/AddQuestions.vue').default);
 Vue.component('module-list', require('./components/courseModulesList.vue').default);
 Vue.component('edit-course', require('./components/EditCourse.vue').default);
+Vue.component('add-blog', require('./components/addBlog.vue').default);
+Vue.component('testimonials-component', require('./components/testimonials.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
