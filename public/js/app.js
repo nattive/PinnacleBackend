@@ -5906,6 +5906,421 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/freeResource.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/freeResource.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_loading_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-loading-button */ "./node_modules/vue-loading-button/dist/vue-loading-button.esm.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var sweet_modal_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweet-modal-vue */ "./node_modules/sweet-modal-vue/src/main.js");
+/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue2-dropzone */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.js");
+/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue2-dropzone/dist/vue2Dropzone.min.css */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.min.css");
+/* harmony import */ var vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_6__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: Object
+  },
+  data: function data() {
+    return {
+      isLoading: false,
+      title: "",
+      subtitle: "",
+      banner: "",
+      fullPage: true,
+      resource_category_id: "",
+      body: "",
+      categoryName: "",
+      filename: "",
+      mediaType: "Image",
+      mediaCaption: "",
+      file: "",
+      categories: [],
+      errors: {},
+      error: null
+    };
+  },
+  computed: {
+    captionLength: function captionLength() {
+      return 250 - this.mediaCaption.length;
+    }
+  },
+  components: {
+    vueDropzone: vue2_dropzone__WEBPACK_IMPORTED_MODULE_4___default.a,
+    VueLoadingButton: vue_loading_button__WEBPACK_IMPORTED_MODULE_0__["default"],
+    vue2Dropzone: vue2_dropzone__WEBPACK_IMPORTED_MODULE_4___default.a,
+    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1___default.a
+  },
+  methods: {
+    onFileChange: function onFileChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createFile(files[0]);
+    },
+    onImageChange: function onImageChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+    },
+    onVideoChange: function onVideoChange() {
+      this.video = this.$refs.video.files[0];
+      console.log(this.video);
+    },
+    createFile: function createFile(file) {
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.file = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
+    createImage: function createImage(file) {
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.banner = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
+    hide: function hide() {
+      this.$modal.hide("add-courses");
+    },
+    createCategory: function createCategory() {
+      var _this = this;
+
+      this.isLoading = false;
+      axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/admin/freeResource/category", {
+        name: this.categoryName
+      }).then(function (response) {
+        _this.$swal("Category Created Successfully!!", response.data.message, "success");
+
+        _this.isLoading = false;
+        console.log(response);
+
+        _this.getResourceCategory();
+      })["catch"](function (err) {
+        _this.isLoading = false;
+
+        _this.$swal("Oops!!", JSON.stringify(err.response && err.response.data && err.response.data.message || JSON.stringify(err.response.data.errors)), "error");
+
+        console.log(JSON.stringify(err.response));
+      });
+    },
+    getResourceCategory: function getResourceCategory() {
+      var _this2 = this;
+
+      this.isLoading = true;
+      axios__WEBPACK_IMPORTED_MODULE_5___default.a.get("/admin/freeResource/category").then(function (response) {
+        _this2.isLoading = false;
+        _this2.categories = response.data;
+        console.log(response);
+      })["catch"](function (err) {
+        _this2.isLoading = false;
+
+        _this2.$swal("Oops!!", JSON.stringify(err.response && err.response.data && JSON.stringify(err.response.data.errors) || err.response.data.message), "error");
+
+        console.log(JSON.stringify(err.response));
+      });
+    },
+    uploadBanner: function uploadBanner(e) {
+      var _this3 = this;
+
+      console.log(e);
+      var image = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(image);
+
+      reader.onload = function (e) {
+        _this3.imageUrl = e.target.result;
+      };
+    },
+    UploadPost: function UploadPost() {
+      var _this4 = this;
+
+      var url = "/admin/freeResource"; // this.isUpdate === true
+      //   ? "/edit-course/" + this.course_id
+      //   : "/upload-course";
+
+      this.isLoading = true;
+      var formData = new FormData();
+
+      if (this.title !== "" && this.body !== "") {
+        formData.append("title", this.title);
+        formData.append("subtitle", this.subtitle);
+        formData.append("banner", this.banner);
+        formData.append("resource_category_id", this.resource_category_id);
+        formData.append("body", this.body);
+        formData.append("filename", this.filename);
+        formData.append("mediaType", this.mediaType);
+        formData.append("mediaCaption", this.mediaCaption);
+        formData.append("file", this.file);
+        formData.append("admin_id", this.user.id);
+        axios__WEBPACK_IMPORTED_MODULE_5___default.a.post(url, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        }).then(function (response) {
+          _this4.$swal("Content created!!", response.data.message, "success"); // this.url = this.response.data.video_id;
+
+
+          _this4.isLoading = false;
+          console.log(response);
+        })["catch"](function (err) {
+          _this4.isLoading = false;
+
+          _this4.$swal("Oops!!", JSON.stringify(err.response && err.response.data && err.response.data.message || err.response.data.errors), "error");
+
+          console.log(JSON.stringify(err.response));
+        });
+      } else {
+        this.isLoading = false;
+        this.$swal("Oops!!", "Some importantg details are missing, Ensure you fill the course title, description and upload a banner umage", "error");
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.getResourceCategory();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/testimonials.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/testimonials.vue?vue&type=script&lang=js& ***!
@@ -53943,6 +54358,543 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/freeResource.vue?vue&type=template&id=ac213536&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/freeResource.vue?vue&type=template&id=ac213536& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "main-content" }, [
+    _c("div", { staticClass: "section__content section__content--p30" }, [
+      _c("div", { staticClass: "p-4" }, [
+        _c(
+          "h5",
+          { staticClass: "card-title", attrs: { id: "mediumModalLabel" } },
+          [_vm._v("\n        Create Content Category\n      ")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "card form-group" }, [
+          _c("div", { staticClass: "card-body row" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-7" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.categoryName,
+                    expression: "categoryName"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "Title",
+                  placeholder: "Enter category name",
+                  maxlength: "250"
+                },
+                domProps: { value: _vm.categoryName },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.categoryName = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-flat btn-success",
+                  attrs: {
+                    disabled: _vm.categoryName === "" || !_vm.categoryName
+                  },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.createCategory($event)
+                    }
+                  }
+                },
+                [_vm._v("\n              Submit\n            ")]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { attrs: { cclass: "row" } }, [
+        _c(
+          "div",
+          { staticClass: "p-4" },
+          [
+            _c(
+              "h5",
+              { staticClass: "card-title", attrs: { id: "mediumModalLabel" } },
+              [_vm._v("\n          Upload Free resoource/Content\n        ")]
+            ),
+            _vm._v(" "),
+            _c("loading", {
+              attrs: { active: _vm.isLoading, "is-full-page": _vm.fullPage },
+              on: {
+                "update:active": function($event) {
+                  _vm.isLoading = $event
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "card form-group" }, [
+              _c("div", { staticClass: "card-body row" }, [
+                _c("div", { staticClass: "col-md-6 col-sm-12" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-control-label",
+                        attrs: { for: "mediaType" }
+                      },
+                      [_vm._v("Short summary of the content")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.subtitle,
+                          expression: "subtitle"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "Title",
+                        placeholder: "Enter The tile of this content",
+                        maxlength: "250"
+                      },
+                      domProps: { value: _vm.subtitle },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.subtitle = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "text-muted" }, [
+                      _vm._v("250 words")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-sm-12" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "form-control-label",
+                      attrs: { for: "Title" }
+                    },
+                    [_vm._v("Title")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.title,
+                        expression: "title"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "Title",
+                      placeholder: "Enter the title of this content",
+                      maxlength: "250"
+                    },
+                    domProps: { value: _vm.title },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.title = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        staticClass: "form-control-file",
+                        attrs: { type: "file", id: "file" },
+                        on: { change: _vm.onFileChange }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "file-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-control-label",
+                          attrs: { for: "filename" }
+                        },
+                        [_vm._v("File Name")]
+                      ),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.filename,
+                            expression: "filename"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "filename",
+                          id: "filename",
+                          max: "250"
+                        },
+                        domProps: { value: _vm.filename },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.filename = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-control-label",
+                          attrs: { for: "youtube" }
+                        },
+                        [_vm._v("Media Type")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.mediaType,
+                              expression: "mediaType"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { name: "filetype", id: "filetype" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.mediaType = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "Image" } }, [
+                            _vm._v("Image")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Video" } }, [
+                            _vm._v("Video")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Document" } }, [
+                            _vm._v("Pdf/Doc Document")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Document" } }, [
+                            _vm._v("Others")
+                          ])
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-control-label",
+                        attrs: { for: "youtube" }
+                      },
+                      [_vm._v("Short Caption for media")]
+                    ),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.mediaCaption,
+                          expression: "mediaCaption"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "mediaCaption",
+                        id: "mediaCaption",
+                        cols: "10",
+                        rows: "5",
+                        maxlength: "250"
+                      },
+                      domProps: { value: _vm.mediaCaption },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.mediaCaption = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("small", {
+                      class:
+                        _vm.captionLength <= 0
+                          ? "text-danger"
+                          : _vm.captionLength < 50
+                          ? "text-warning"
+                          : "text-muted",
+                      domProps: { textContent: _vm._s(_vm.captionLength) }
+                    })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-control-label",
+                          attrs: { for: "banner" }
+                        },
+                        [_vm._v("Upload Content Banner")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control-file",
+                        attrs: {
+                          type: "file",
+                          id: "banner",
+                          accept: "image/jpeg"
+                        },
+                        on: { change: _vm.onImageChange }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-control-label",
+                        attrs: { for: "youtube" }
+                      },
+                      [_vm._v("Categories")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.resource_category_id,
+                            expression: "resource_category_id"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "select", id: "select" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.resource_category_id = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "0" } }, [
+                          _vm._v("Uncategoriesed")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.categories, function(category, index) {
+                          return _c(
+                            "option",
+                            { key: index, domProps: { value: category.id } },
+                            [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(category.name) +
+                                  "\n                  "
+                              )
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("label", { staticClass: "form-control-label" }, [
+                      _vm._v("Body")
+                    ]),
+                    _vm._v(" "),
+                    _c("wysiwyg", {
+                      model: {
+                        value: _vm.body,
+                        callback: function($$v) {
+                          _vm.body = $$v
+                        },
+                        expression: "body"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "au-btn au-btn-icon btn-secondary au-btn--small",
+                  attrs: { type: "button", id: "close" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.hide($event)
+                    }
+                  }
+                },
+                [_vm._v("\n            Cancel\n          ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "au-btn au-btn-icon au-btn--green au-btn--small",
+                  attrs: { type: "button" },
+                  on: { click: _vm.UploadPost }
+                },
+                [
+                  _vm._v("\n            Upload Post\n            "),
+                  _vm.isLoading
+                    ? _c("span", { staticClass: "fa fa-spin fa-spinner" })
+                    : _vm._e()
+                ]
+              )
+            ])
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2" }, [
+      _c(
+        "label",
+        { staticClass: "form-control-label", attrs: { for: "Title" } },
+        [_vm._v("Category Name")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "h5",
+      { staticClass: "card-title p-4", attrs: { id: "mediumModalLabel" } },
+      [
+        _vm._v("\n            Attach Downloadable file\n            "),
+        _c("small", { staticClass: "text-muted" }, [
+          _vm._v("You can add more files later")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/testimonials.vue?vue&type=template&id=648da57f&":
 /*!***************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/testimonials.vue?vue&type=template&id=648da57f& ***!
@@ -68530,6 +69482,7 @@ Vue.component('module-list', __webpack_require__(/*! ./components/courseModulesL
 Vue.component('edit-course', __webpack_require__(/*! ./components/EditCourse.vue */ "./resources/js/components/EditCourse.vue")["default"]);
 Vue.component('add-blog', __webpack_require__(/*! ./components/addBlog.vue */ "./resources/js/components/addBlog.vue")["default"]);
 Vue.component('testimonials-component', __webpack_require__(/*! ./components/testimonials.vue */ "./resources/js/components/testimonials.vue")["default"]);
+Vue.component('free-resource', __webpack_require__(/*! ./components/freeResource.vue */ "./resources/js/components/freeResource.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -69430,6 +70383,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_courseModulesList_vue_vue_type_template_id_4d7201ef___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_courseModulesList_vue_vue_type_template_id_4d7201ef___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/freeResource.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/freeResource.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _freeResource_vue_vue_type_template_id_ac213536___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./freeResource.vue?vue&type=template&id=ac213536& */ "./resources/js/components/freeResource.vue?vue&type=template&id=ac213536&");
+/* harmony import */ var _freeResource_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./freeResource.vue?vue&type=script&lang=js& */ "./resources/js/components/freeResource.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _freeResource_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _freeResource_vue_vue_type_template_id_ac213536___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _freeResource_vue_vue_type_template_id_ac213536___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/freeResource.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/freeResource.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/freeResource.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_freeResource_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./freeResource.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/freeResource.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_freeResource_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/freeResource.vue?vue&type=template&id=ac213536&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/freeResource.vue?vue&type=template&id=ac213536& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_freeResource_vue_vue_type_template_id_ac213536___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./freeResource.vue?vue&type=template&id=ac213536& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/freeResource.vue?vue&type=template&id=ac213536&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_freeResource_vue_vue_type_template_id_ac213536___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_freeResource_vue_vue_type_template_id_ac213536___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

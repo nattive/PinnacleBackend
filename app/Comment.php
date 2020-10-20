@@ -17,6 +17,11 @@ class Comment extends Model
         return $this->belongsTo('App\Course', 'course_id');
     }
 
+    public function blogPosts()
+    {
+        return $this->hasMany(BlogPost::class, 'blog_posts_id');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');

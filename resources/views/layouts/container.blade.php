@@ -136,7 +136,7 @@
                     {{-- @isset(Auth::user()-> tutor_id)
                     <li>
                         <a href="{{ route('courses') }}">
-                            <i class="fas fa-book"></i>Your Courses</a>
+                    <i class="fas fa-book"></i>Your Courses</a>
 
                     </li>
                     @endisset --}}
@@ -145,7 +145,7 @@
                             <i class="fas fa-table"></i>Manage Tutors</a>
                     </li>
                     <li>
-                       <a href='{{ route('testimonial') }}'>
+                        <a href='{{ route('testimonial') }}'>
                             <i class="fas fa-table"></i>Upload Testimonials</a>
                     </li>
 
@@ -157,9 +157,13 @@
                         <a href="{{ route('AllCourses') }}">
                             <i class="fas fa-calendar-alt"></i>All Courses</a>
                     </li>
-                     <li>
+                    <li>
                         <a href="{{ route('blog') }}">
                             <i class="fas fa-book"></i>Blog Post</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('freeResource') }}">
+                            <i class="fas fa-book"></i>Free Resources</a>
                     </li>
 
                 </ul>

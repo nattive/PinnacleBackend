@@ -46,6 +46,10 @@ class HomeController extends Controller
     {
         return view('Pages.testimonial');
     }
+ public function freeResource()
+    {
+        return view('Pages.freeResource');
+    }
 
     public function category()
     {

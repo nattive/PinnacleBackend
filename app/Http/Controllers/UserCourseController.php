@@ -25,7 +25,8 @@ class UserCourseController extends Controller
     public function show($slug)
     {
         $course = Course::where('slug', $slug)->with('Reviews', 'tutor', 'Modules.CourseMaterials', 'SubCategory')->first();
-        // $course = Course::where([['slug', $slug], ['isApproved', '=', 'true']])->with('Reviews', 'tutor', 'Modules.CourseMaterials', 'SubCategory')->first();
+        // return $course;
+        // $course = Course::where([['slug', $slug], ['ApprovedBy', '!=', nulltrue']])->with('Reviews', 'tutor', 'Modules.CourseMaterials', 'SubCategory')->first();
         return new CourseResource($course);
     }
 
@@ -111,19 +112,19 @@ public function topRated()
 
     public function get($number)
     {
-        $courses = Course::where('isApproved', 'true')->with('tutor', 'Modules.CourseMaterials', 'SubCategory')->paginate($number ?? 4);
+        $courses = Course::where('ApprovedBy', '!=', null)->with('tutor', 'Modules.CourseMaterials', 'SubCategory')->paginate($number ?? 4);
         return CourseResource::collection($courses);
     }
 
     public function getPO($number)
     {
-        $courses = Course::where('isPO', 1)->with('Reviews', 'tutor', 'Modules.CourseMaterials', 'SubCategory')->paginate($number ?? 5);
+        $courses = Course::where('courseType', 'isPO')->with('Reviews', 'tutor', 'Modules.CourseMaterials', 'SubCategory')->paginate($number ?? 5);
         return CourseResource::collection($courses);
     }
 
     public function getCOTF($number)
     {
-        $courses = Course::where('isCareer', 1)->with('Reviews', 'tutor', 'Modules.CourseMaterials', 'SubCategory')->paginate($number ?? 5);
+        $courses = Course::where('courseType','isCareer')->with('Reviews', 'tutor', 'Modules.CourseMaterials', 'SubCategory')->paginate($number ?? 5);
         return CourseResource::collection($courses);
     }
 

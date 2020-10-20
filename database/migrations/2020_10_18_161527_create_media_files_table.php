@@ -15,6 +15,14 @@ class CreateMediaFilesTable extends Migration
     {
         Schema::create('media_files', function (Blueprint $table) {
             $table->id();
+            $table->string("name")->nullable();
+            $table->string("type");
+            $table->string("link");
+            $table->string("caption")->nullable();
+            $table->string("streamLink")->nullable();
+            $table->integer("course_id")->nullable();
+            $table->integer("blog_category_id")->nullable();
+            $table->integer("free_resources_id")->nullable();
             $table->timestamps();
         });
     }

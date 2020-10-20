@@ -26,4 +26,8 @@ class Admin extends Authenticatable
     {
         $this->hasMany(BlogPost::class);
     }
+      public function freeResources()
+    {
+        $this->hasMany(FreeResources::class);
+    }
 }

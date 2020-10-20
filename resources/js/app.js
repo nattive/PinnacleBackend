@@ -53,6 +53,7 @@ Vue.component('module-list', require('./components/courseModulesList.vue').defau
 Vue.component('edit-course', require('./components/EditCourse.vue').default);
 Vue.component('add-blog', require('./components/addBlog.vue').default);
 Vue.component('testimonials-component', require('./components/testimonials.vue').default);
+Vue.component('free-resource', require('./components/freeResource.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
